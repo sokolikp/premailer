@@ -243,9 +243,9 @@ class Premailer
         end
         encoding = @options[:input_encoding] || (RUBY_PLATFORM == 'java' ? nil : 'BINARY')
         doc = if @options[:html_fragment]
-          ::Nokogiri::HTML.fragment(thing, encoding)
+          ::Nokogiri::HTML.fragment(thing, encoding:)
         else
-          ::Nokogiri::HTML(thing, nil, encoding, &:recover)
+          ::Nokogiri::HTML(thing, encoding:, &:recover)
         end
 
         # Fix for removing any CDATA tags from both style and script tags inserted per
